@@ -31,14 +31,18 @@ public class PetService {
         String responseBody = response.body();
         Pet[] pets = new ObjectMapper().readValue(responseBody, Pet[].class);
         List<Pet> petList = Arrays.stream(pets).toList();
-        System.out.println("Pets cadastrados:");
-        for (Pet pet : petList) {
-            long id = pet.getId();
-            String tipo = pet.getTipo();
-            String nome = pet.getNome();
-            String raca = pet.getRaca();
-            int idade = pet.getIdade();
-            System.out.println(id +" - " +tipo +" - " +nome +" - " +raca +" - " +idade +" ano(s)");
+        if (petList.isEmpty()){
+            System.out.println("Não há pets cadastrados nesse abrigo!");
+        }else {
+            System.out.println("Pets cadastrados:");
+            for (Pet pet : petList) {
+                long id = pet.getId();
+                String tipo = pet.getTipo();
+                String nome = pet.getNome();
+                String raca = pet.getRaca();
+                int idade = pet.getIdade();
+                System.out.println(id + " - " + tipo + " - " + nome + " - " + raca + " - " + idade + " ano(s)");
+            }
         }
     }
 
